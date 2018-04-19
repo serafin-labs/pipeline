@@ -9,6 +9,7 @@ import { SchemaBuildersInterface } from "./SchemaBuildersInterface";
 import { PipeInterface } from "./PipeInterface";
 import { PipelineRelation } from "./Relation";
 import { ResultsInterface } from "./ResultsInterface";
+import { Do } from "./Do";
 
 export type PipelineMethods = "create" | "read" | "replace" | "patch" | "delete";
 
@@ -117,6 +118,10 @@ export abstract class PipelineAbstract<M extends IdentityInterface, S extends Sc
         }
 
         return this as any as PipelineAbstract<MODEL, SchemaBuildersInterface<MODEL, CV, CO, CM, RQ, RO, RM, UV, UO, UM, PQ, PV, PO, PM, DQ, DO, DM>, R & PR>;
+    }
+
+    get do() {
+        return new Do(this);
     }
 
     /**
